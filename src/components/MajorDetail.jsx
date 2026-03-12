@@ -149,8 +149,9 @@ const MajorDetail = ({ majorGroup, onBack }) => {
                     </div>
                 </div>
 
-                <div className="show-mobile" style={{ color: 'var(--primary)', fontSize: '0.8rem', marginBottom: '0.6rem', textAlign: 'right', fontWeight: '600' }}>
-                    Vuốt sang ngang để xem thêm &rarr;
+                <div className="scroll-hint-mobile show-mobile">
+                    <span>DÙNG TAY VUỐT SANG PHẢI ĐỂ XEM ĐIỂM</span>
+                    <span style={{ fontSize: '1.2rem' }}>👉</span>
                 </div>
 
                 <div className="table-responsive detail-table-wrapper">

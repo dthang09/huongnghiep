@@ -601,8 +601,9 @@ ul {
 
   .table-responsive {
     width: 100% !important;
-    overflow-x: scroll !important;
-    /* Force scrollbar visibility */
+    overflow-x: auto !important;
+    /* Force internal scroll */
+    overflow-y: hidden !important;
     display: block !important;
     -webkit-overflow-scrolling: touch !important;
     margin-bottom: 2rem !important;
@@ -610,19 +611,20 @@ ul {
     border-radius: var(--radius-sm);
     position: relative !important;
     z-index: 50 !important;
-    /* High enough to be over siblings */
-    overscroll-behavior-x: contain;
-    clear: both;
+    background-color: #fff;
+    border: 1px solid var(--border-light);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
   }
 
   .table-responsive::-webkit-scrollbar {
-    height: 8px;
+    height: 10px !important;
+    background: #f1f1f1;
     display: block !important;
   }
 
   .table-responsive::-webkit-scrollbar-thumb {
-    background-color: var(--primary);
-    border-radius: 4px;
+    background-color: var(--primary) !important;
+    border-radius: 5px;
   }
 
   .table-responsive::-webkit-scrollbar-track {
@@ -638,13 +640,17 @@ ul {
   }
 
   /* Table Optimization */
-  table {
-    font-size: 0.82rem !important;
-    min-width: 1100px !important;
-    width: 1100px !important;
+  table,
+  .detail-scores-table {
+    font-size: 0.85rem !important;
+    min-width: 1000px !important;
+    /* Extremely wide to force scroll */
+    width: 1000px !important;
     table-layout: auto !important;
     border-collapse: collapse !important;
     display: table !important;
+    max-width: none !important;
+    background-color: white;
   }
 
   th,
@@ -658,7 +664,40 @@ ul {
   td:nth-child(2),
   th:nth-child(2) {
     white-space: normal !important;
-    min-width: 200px !important;
+    min-width: 220px !important;
+    word-break: break-word;
+  }
+
+  .scroll-hint-mobile {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background-color: #ffeb3b !important;
+    /* Bright yellow */
+    color: #d32f2f !important;
+    /* Bright red text */
+    font-size: 0.85rem;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    border-radius: 8px;
+    border: 2px solid #d32f2f;
+    animation: flash 1.5s infinite;
+  }
+
+  @keyframes flash {
+    0% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.6;
+    }
+
+    100% {
+      opacity: 1;
+    }
   }
 
   .hide-mobile {
