@@ -128,9 +128,8 @@ const SchoolDetail = ({ schoolCode, onBack }) => {
                     <h3>Điểm chuẩn</h3>
                     <div className="year-selector">
                         <Calendar size={18} className="year-icon" />
-                        <select defaultValue="2024">
-                            <option value="2024">2024</option>
-                            <option value="2023">2023</option>
+                        <select defaultValue="2025">
+                            <option value="2025">2025</option>
                         </select>
                     </div>
                 </div>
