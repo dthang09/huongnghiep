@@ -601,11 +601,13 @@ ul {
 
   .table-responsive {
     width: 100% !important;
-    overflow-x: auto !important;
+    overflow-x: scroll !important;
     /* Force internal scroll */
     overflow-y: hidden !important;
     display: block !important;
     -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-x !important;
+    /* Critically important for mobile scrolling */
     margin-bottom: 2rem !important;
     padding-bottom: 15px !important;
     border-radius: var(--radius-sm);
@@ -637,6 +639,7 @@ ul {
     border-radius: var(--radius-md);
     margin-bottom: 1.5rem;
     position: relative;
+    overflow: initial !important;
   }
 
   /* Table Optimization */

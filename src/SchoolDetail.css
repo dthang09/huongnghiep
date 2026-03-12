@@ -240,7 +240,7 @@
 .detail-table-wrapper {
     border: 1px solid var(--border-light);
     border-radius: var(--radius-md);
-    overflow: visible;
+    overflow: initial;
 }
 
 .detail-scores-table {
