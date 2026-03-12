@@ -97,16 +97,19 @@ const BKUCalculator = () => {
         // 2. Điểm học THPT quy đổi
         const tbhoc_quydoi = ((m2_tb + m3_tb + m1_tb * 2) / 4) * 10;
 
-        // 3. Điểm năng lực
+        // 3. Điểm năng lực & Điểm học lực
         let nangluc = 0;
+        let hocLuc = 0;
+
         if (hasDGNL) {
             nangluc = (parseNum(totalDGNL) + parseNum(mathDGNL)) / 15;
+            hocLuc = nangluc * 0.70 + thpt_quydoi * 0.20 + tbhoc_quydoi * 0.10;
         } else {
-            nangluc = thpt_quydoi * 0.75;
+            // Trường hợp không thi ĐGNL: Công thức quy định là lấy 90% THPT + 10% Học bạ
+            // Theo cơ chế BKU, không thi DGNL thì tối đa điểm học lực thường thấp hơn (hoặc dùng hệ số khác)
+            // Ở đây tôi áp dụng: {nangluc + thpt_quydoi} -> dồn vào 90% TNTHPT
+            hocLuc = thpt_quydoi * 0.90 + tbhoc_quydoi * 0.10;
         }
-
-        // Điểm học lực
-        const hocLuc = nangluc * 0.70 + thpt_quydoi * 0.20 + tbhoc_quydoi * 0.10;
 
         // Điểm cộng
         const congThanhTich = pt_thuong;
@@ -173,15 +176,15 @@ const BKUCalculator = () => {
                                     <input className="modern-input" type="number" value={mathDGNL} onChange={e => setMathDGNL(e.target.value)} placeholder="0" />
                                 </div>
                                 <div className="modern-input-group">
-                                    <label className="modern-label">Tổng điểm (Đã nhân hệ số 2 môn Toán)</label>
-                                    <input className="modern-input" type="number" value={totalDGNL} onChange={e => setTotalDGNL(e.target.value)} placeholder="1000" />
+                                    <label className="modern-label">Tổng điểm (Tối đa 1200 / Có nhân hệ số 2 môn Toán)</label>
+                                    <input className="modern-input" type="number" value={totalDGNL} onChange={e => setTotalDGNL(e.target.value)} placeholder="0" />
                                 </div>
                             </div>
                             <p className="help-text" style={{ marginBottom: '2rem' }}>* Hệ thống sẽ tính Điểm Năng Lực = (Tổng_điểm + Toán_học) / 15</p>
                         </>
                     ) : (
                         <div className="highlight-box" style={{ marginBottom: '2rem', backgroundColor: '#fff4f4', border: '1px solid #ffcccc' }}>
-                            <p style={{ color: '#c0392b', fontWeight: 600 }}>Thí sinh không thi ĐGNL sẽ được quy đổi: Điểm Năng Lực = Điểm TNTHPT quy đổi * 0.75</p>
+                            <p style={{ color: '#c0392b', fontWeight: 600 }}>Thí sinh không thi ĐGNL: Điểm năng lực sẽ được thay thế bằng Điểm thi TN THPT (Chiếm trọng số thay cho ĐGNL + THPT)</p>
                         </div>
                     )}
 
@@ -197,7 +200,7 @@ const BKUCalculator = () => {
                             <input className="modern-input" type="number" value={sub2THPT} onChange={e => setSub2THPT(e.target.value)} placeholder="0" />
                         </div>
                         <div className="modern-input-group">
-                            <label className="modern-label">Môn 3 (Anh)</label>
+                            <label className="modern-label">Môn 3</label>
                             <input className="modern-input" type="number" value={sub3THPT} onChange={e => setSub3THPT(e.target.value)} placeholder="0" />
                         </div>
                     </div>
