@@ -168,20 +168,20 @@ const SchoolDetail = ({ schoolCode, onBack }) => {
                     <table className="detail-scores-table">
                         <thead>
                             <tr>
-                                <th>STT</th>
+                                <th className="stt-col">STT</th>
                                 <th>Tên, mã ngành</th>
                                 <th>Điểm chuẩn</th>
                                 <th>Tổ hợp môn</th>
-                                <th>Học phí (VNĐ)</th>
-                                <th>Ghi chú</th>
-                                <th></th>
+                                <th className="hide-mobile">Học phí (VNĐ)</th>
+                                <th className="hide-mobile">Ghi chú</th>
+                                <th className="hide-mobile"></th>
                             </tr>
                         </thead>
                         <tbody>
                             {filteredScores.length > 0 ? (
                                 filteredScores.map((score, idx) => (
                                     <tr key={idx}>
-                                        <td className="stt-cell">{idx + 1}</td>
+                                        <td className="stt-cell stt-col">{idx + 1}</td>
                                         <td>
                                             <div className="major-name">{score["Tên ngành"]}</div>
                                             <div className="major-code">{score["Mã ngành"] || ""}</div>
@@ -191,9 +191,9 @@ const SchoolDetail = ({ schoolCode, onBack }) => {
                                             <div className="theo-nam-badge">Theo năm 📊</div>
                                         </td>
                                         <td>{score["Tổ hợp môn"]}</td>
-                                        <td className="tuition-cell">--</td>
-                                        <td className="note-cell">{score["Ghi chú"]}</td>
-                                        <td className="action-cell">
+                                        <td className="tuition-cell hide-mobile">--</td>
+                                        <td className="note-cell hide-mobile">{score["Ghi chú"]}</td>
+                                        <td className="action-cell hide-mobile">
                                             <button className="icon-btn" title="Copy"><Copy size={16} /></button>
                                             <button className="icon-btn" title="Share"><Share2 size={16} /></button>
                                         </td>

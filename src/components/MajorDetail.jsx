@@ -153,20 +153,20 @@ const MajorDetail = ({ majorGroup, onBack }) => {
                     <table className="detail-scores-table">
                         <thead style={{ backgroundColor: '#f8f9fa' }}>
                             <tr>
-                                <th>STT</th>
+                                <th className="stt-col">STT</th>
                                 <th>Tên, mã ngành</th>
                                 <th>Điểm chuẩn</th>
                                 <th>Tổ hợp môn</th>
-                                <th>Học phí (VNĐ)</th>
+                                <th className="hide-mobile">Học phí (VNĐ)</th>
                                 <th>Tên trường</th>
-                                <th></th>
+                                <th className="hide-mobile"></th>
                             </tr>
                         </thead>
                         <tbody>
                             {filteredAndSortedMatches.length > 0 ? (
                                 filteredAndSortedMatches.map((score, idx) => (
                                     <tr key={idx}>
-                                        <td className="stt-cell">{idx + 1}</td>
+                                        <td className="stt-cell stt-col">{idx + 1}</td>
                                         <td>
                                             <div className="major-name" style={{ fontWeight: 600, color: 'var(--text-main)', marginBottom: '0.25rem' }}>{score["Tên ngành"]}</div>
                                             <div className="major-code" style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{score["Mã ngành"] || ""}</div>
@@ -176,11 +176,11 @@ const MajorDetail = ({ majorGroup, onBack }) => {
                                             <div className="theo-nam-badge" style={{ display: 'inline-flex', fontSize: '0.75rem', backgroundColor: '#0056b3', color: 'white', padding: '0.2rem 0.5rem', borderRadius: '4px' }}>Theo năm 📊</div>
                                         </td>
                                         <td style={{ color: 'var(--text-main)' }}>{score["Tổ hợp môn"]}</td>
-                                        <td className="tuition-cell">--</td>
+                                        <td className="tuition-cell hide-mobile">--</td>
                                         <td className="note-cell" style={{ maxWidth: '200px' }}>
                                             <div style={{ fontWeight: 500, color: 'var(--text-main)' }}>{score.schoolName}</div>
                                         </td>
-                                        <td className="action-cell">
+                                        <td className="action-cell hide-mobile">
                                             <button className="icon-btn" title="Copy"><Copy size={16} /></button>
                                             <button className="icon-btn" title="Share"><Share2 size={16} /></button>
                                         </td>

@@ -190,7 +190,7 @@ const BKUCalculator = () => {
 
                     {/* 2. THPT Section */}
                     <div className="calc-title-modern">Điểm thi TN THPT</div>
-                    <div className="grid-2-col" style={{ gridTemplateColumns: '1fr 1fr 1fr' }}>
+                    <div className="grid-3-col">
                         <div className="modern-input-group">
                             <label className="modern-label">Toán</label>
                             <input className="modern-input" type="number" value={mathTHPT} onChange={e => setMathTHPT(e.target.value)} placeholder="0" />
@@ -206,7 +206,7 @@ const BKUCalculator = () => {
                     </div>
 
                     <div className="calc-title-modern">Điểm học bạ THPT (Trung bình 3 năm)</div>
-                    <div className="grid-2-col" style={{ gridTemplateColumns: '1fr 1fr 1fr' }}>
+                    <div className="grid-3-col">
                         <div className="modern-input-group">
                             <label className="modern-label">TB Toán</label>
                             <input className="modern-input" type="number" value={mathTB} onChange={e => setMathTB(e.target.value)} placeholder="0" />
@@ -222,16 +222,16 @@ const BKUCalculator = () => {
                     </div>
 
                     {/* 3. English Certificates */}
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '1rem', marginTop: '1rem' }}>
+                    <div className="grid-3-col" style={{ marginTop: '1rem' }}>
                         <div>
-                            <div className="calc-title-modern">Điểm IELTS</div>
+                            <div className="calc-title-modern" style={{ marginTop: '0', fontSize: '1rem' }}>Điểm IELTS</div>
                             <div className="modern-input-group">
                                 <label className="modern-label">Overall</label>
                                 <input className="modern-input" type="number" value={ieltsOverall} onChange={e => setIeltsOverall(e.target.value)} placeholder="0" />
                             </div>
                         </div>
                         <div>
-                            <div className="calc-title-modern">Điểm TOEIC</div>
+                            <div className="calc-title-modern" style={{ marginTop: '0', fontSize: '1rem' }}>Điểm TOEIC</div>
                             <div className="modern-input-group">
                                 <label className="modern-label">Listening + Reading</label>
                                 <input className="modern-input" type="number" value={toeicLR} onChange={e => setToeicLR(e.target.value)} placeholder="0" />
@@ -242,7 +242,7 @@ const BKUCalculator = () => {
                             </div>
                         </div>
                         <div>
-                            <div className="calc-title-modern">Điểm TOEFL iBT</div>
+                            <div className="calc-title-modern" style={{ marginTop: '0', fontSize: '1rem' }}>Điểm TOEFL iBT</div>
                             <div className="modern-input-group">
                                 <label className="modern-label">Total</label>
                                 <input className="modern-input" type="number" value={toeflTotal} onChange={e => setToeflTotal(e.target.value)} placeholder="0" />

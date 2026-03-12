@@ -319,10 +319,27 @@
     gap: 1.5rem;
 }
 
-@media (max-width: 640px) {
-    .grid-2-col {
+.grid-3-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+
+    .grid-2-col,
+    .grid-3-col {
         grid-template-columns: 1fr;
         gap: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+
+    .grid-2-col,
+    .grid-3-col {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
     }
 }
 
