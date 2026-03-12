@@ -184,6 +184,28 @@
     align-items: center;
 }
 
+.final-score-content {
+    text-align: center;
+    width: 100%;
+}
+
+.final-score-label {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+}
+
+.final-score-value {
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+.radio-group {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
 .radio-group input[type="radio"] {
     margin-right: 0.5rem;
     transform: scale(1.2);
@@ -254,7 +276,16 @@
     }
 
     .final-score {
-        font-size: 1.25rem;
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+
+    .final-score-label {
+        font-size: 0.85rem;
+    }
+
+    .final-score-value {
+        font-size: 2rem;
     }
 }
 
@@ -404,8 +435,10 @@
 
 @media (max-width: 768px) {
     .school-selector-box {
-        padding: 1.25rem;
-        gap: 1rem;
+        padding: 1rem;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+        border-radius: 12px;
         flex-direction: column;
         text-align: center;
     }
@@ -416,10 +449,51 @@
     }
 
     .school-select-label {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
+        margin-bottom: 0.4rem;
     }
 
     .school-select-input {
+        font-size: 0.95rem;
+        padding: 0.75rem;
+    }
+
+    .modern-input-group {
+        padding: 0.6rem 1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .modern-input {
         font-size: 1rem;
     }
+}
+
+/* KHTN Specific Themes */
+.calc-btn-khtn {
+    background-color: #0d9488 !important;
+    box-shadow: 0 4px 15px rgba(13, 148, 136, 0.2) !important;
+}
+
+.calc-btn-khtn:hover {
+    background-color: #0f766e !important;
+}
+
+.result-card-khtn {
+    border-color: #0d9488 !important;
+    background: #f0fdfa !important;
+}
+
+.result-card-khtn .result-header h3,
+.result-card-khtn .res-row strong {
+    color: #0d9488 !important;
+}
+
+.highlight-box-khtn {
+    background: #e6fcf5 !important;
+    border: 1px solid #99f6e4 !important;
+}
+
+.final-score-khtn {
+    background: #0d9488 !important;
+    color: white !important;
 }

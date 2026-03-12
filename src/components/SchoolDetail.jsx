@@ -77,7 +77,7 @@ const SchoolDetail = ({ schoolCode, onBack }) => {
 
             <div className="detail-header">
                 <div className="title-area">
-                    <h1>{fullName}</h1>
+                    <h1 className="detail-title">{fullName}</h1>
                     <div className="school-meta">
                         <span className="meta-label">Mã trường:</span>
                         <span className="meta-value bold">{schoolBasic.code}</span>
@@ -164,6 +164,10 @@ const SchoolDetail = ({ schoolCode, onBack }) => {
                     </div>
                 </div>
 
+                <div className="show-mobile" style={{ color: 'var(--primary)', fontSize: '0.8rem', marginBottom: '0.6rem', textAlign: 'right', fontWeight: '600' }}>
+                    Vuốt sang ngang để xem thêm &rarr;
+                </div>
+
                 <div className="table-responsive detail-table-wrapper">
                     <table className="detail-scores-table">
                         <thead>
@@ -173,7 +177,7 @@ const SchoolDetail = ({ schoolCode, onBack }) => {
                                 <th>Điểm chuẩn</th>
                                 <th>Tổ hợp môn</th>
                                 <th className="hide-mobile">Học phí (VNĐ)</th>
-                                <th className="hide-mobile">Ghi chú</th>
+                                <th>Ghi chú</th>
                                 <th className="hide-mobile"></th>
                             </tr>
                         </thead>
@@ -192,7 +196,7 @@ const SchoolDetail = ({ schoolCode, onBack }) => {
                                         </td>
                                         <td>{score["Tổ hợp môn"]}</td>
                                         <td className="tuition-cell hide-mobile">--</td>
-                                        <td className="note-cell hide-mobile">{score["Ghi chú"]}</td>
+                                        <td className="note-cell">{score["Ghi chú"]}</td>
                                         <td className="action-cell hide-mobile">
                                             <button className="icon-btn" title="Copy"><Copy size={16} /></button>
                                             <button className="icon-btn" title="Share"><Share2 size={16} /></button>
@@ -201,7 +205,7 @@ const SchoolDetail = ({ schoolCode, onBack }) => {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="7" style={{ textAlign: 'center', padding: '2rem' }}>
+                                    <td colSpan="7" className="no-results-cell">
                                         {scores.length === 0 ? "Phần điểm của trường này đang được cập nhật." : "Không tìm thấy ngành phù hợp."}
                                     </td>
                                 </tr>

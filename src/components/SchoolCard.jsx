@@ -8,7 +8,7 @@ const SchoolCard = ({ code, name, location, onSelectSchool }) => {
     const hasScores = !!schoolData && schoolData.scores && schoolData.scores.length > 0;
 
     return (
-        <div className="school-card" onClick={() => onSelectSchool(code)} style={{ cursor: 'pointer' }}>
+        <div className="school-card" onClick={() => onSelectSchool(code)}>
             <div className="school-code">{code}</div>
             <div className="school-info">
                 <div className="school-name">{name}</div>
@@ -17,7 +17,7 @@ const SchoolCard = ({ code, name, location, onSelectSchool }) => {
 
             <div className="school-actions">
                 {hasScores && (
-                    <div className="scores-toggle-badge" style={{ backgroundColor: '#e6f0ff', color: '#0056b3' }}>
+                    <div className="scores-toggle-badge">
                         <BarChart2 size={16} />
                         <span>Xem điểm</span>
                         <ChevronRight size={16} />

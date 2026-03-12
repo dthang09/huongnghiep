@@ -25,27 +25,55 @@
     color: var(--primary);
 }
 
-.detail-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border-light);
-}
-
-.title-area h1 {
-    font-size: 1.8rem;
-    color: var(--primary);
-    margin-bottom: 0.5rem;
-}
-
-.school-meta {
+.detail-title {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    font-size: 0.95rem;
+    gap: 1rem;
+    font-size: 1.6rem;
+    color: #1a365d;
+}
+
+.major-detail-icon {
+    font-size: 1.8rem;
+    background: var(--secondary);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    flex-shrink: 0;
+}
+
+.detail-filter {
+    background-color: white;
+    border: 1px solid var(--border-light) !important;
+}
+
+.detail-filter select {
     color: var(--text-main);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .detail-title {
+        flex-direction: column;
+        gap: 0.5rem;
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+    .major-detail-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .major-detail-header {
+        border-bottom: none;
+        margin-bottom: 1rem;
+    }
 }
 
 .meta-label {
@@ -212,13 +240,23 @@
 .detail-table-wrapper {
     border: 1px solid var(--border-light);
     border-radius: var(--radius-md);
-    overflow: hidden;
+    overflow: visible;
 }
 
 .detail-scores-table {
     width: 100%;
     border-collapse: collapse;
-    min-width: 800px;
+}
+
+.detail-scores-table th,
+.detail-scores-table td {
+    padding: 1rem;
+}
+
+.detail-scores-table th:nth-child(2),
+.detail-scores-table td:nth-child(2) {
+    white-space: normal !important;
+    min-width: 250px;
 }
 
 .detail-scores-table th {

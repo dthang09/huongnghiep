@@ -84,25 +84,25 @@ const MajorDetail = ({ majorGroup, onBack }) => {
     }, [allMatches.matches, searchTerm, blockFilter, sortOrder]);
 
     return (
-        <div className="school-detail-page" style={{ animation: 'fadeIn 0.3s ease-out' }}>
-            <button className="back-btn" onClick={onBack} style={{ marginBottom: '1.5rem' }}>
+        <div className="school-detail-page">
+            <button className="back-btn" onClick={onBack}>
                 <ChevronLeft size={20} />
                 <span>Trở về</span>
             </button>
 
-            <div className="detail-header" style={{ borderBottom: 'none', paddingBottom: '0.5rem', marginBottom: '1rem' }}>
+            <div className="detail-header major-detail-header">
                 <div className="title-area">
-                    <h1 style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '1.6rem', color: '#1a365d' }}>
-                        <span style={{ fontSize: '1.8rem', background: 'var(--secondary)', width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '8px' }}>
+                    <h1 className="detail-title">
+                        <span className="major-detail-icon">
                             {majorGroup.icon}
                         </span>
-                        Nhóm ngành {majorGroup.name}
+                        <span>Nhóm ngành {majorGroup.name}</span>
                     </h1>
                 </div>
 
-                <div className="filter-dropdown" style={{ backgroundColor: 'white', border: '1px solid var(--border-light)' }}>
+                <div className="filter-dropdown detail-filter">
                     <Building2 size={18} color="var(--primary)" />
-                    <select defaultValue="daihoc" style={{ color: 'var(--text-main)', fontWeight: 500 }}>
+                    <select defaultValue="daihoc">
                         <option value="daihoc">Hệ đại học</option>
                         <option value="caodang">Hệ cao đẳng</option>
                     </select>
@@ -149,9 +149,13 @@ const MajorDetail = ({ majorGroup, onBack }) => {
                     </div>
                 </div>
 
-                <div className="table-responsive detail-table-wrapper" style={{ border: '1px solid var(--border-light)', borderRadius: '8px' }}>
+                <div className="show-mobile" style={{ color: 'var(--primary)', fontSize: '0.8rem', marginBottom: '0.6rem', textAlign: 'right', fontWeight: '600' }}>
+                    Vuốt sang ngang để xem thêm &rarr;
+                </div>
+
+                <div className="table-responsive detail-table-wrapper">
                     <table className="detail-scores-table">
-                        <thead style={{ backgroundColor: '#f8f9fa' }}>
+                        <thead>
                             <tr>
                                 <th className="stt-col">STT</th>
                                 <th>Tên, mã ngành</th>
@@ -168,16 +172,16 @@ const MajorDetail = ({ majorGroup, onBack }) => {
                                     <tr key={idx}>
                                         <td className="stt-cell stt-col">{idx + 1}</td>
                                         <td>
-                                            <div className="major-name" style={{ fontWeight: 600, color: 'var(--text-main)', marginBottom: '0.25rem' }}>{score["Tên ngành"]}</div>
-                                            <div className="major-code" style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{score["Mã ngành"] || ""}</div>
+                                            <div className="major-name">{score["Tên ngành"]}</div>
+                                            <div className="major-code">{score["Mã ngành"] || ""}</div>
                                         </td>
                                         <td>
-                                            <div className="score-value" style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--primary)', marginBottom: '0.25rem' }}>{score["Điểm chuẩn"]}</div>
-                                            <div className="theo-nam-badge" style={{ display: 'inline-flex', fontSize: '0.75rem', backgroundColor: '#0056b3', color: 'white', padding: '0.2rem 0.5rem', borderRadius: '4px' }}>Theo năm 📊</div>
+                                            <div className="score-value">{score["Điểm chuẩn"]}</div>
+                                            <div className="theo-nam-badge">Theo năm 📊</div>
                                         </td>
                                         <td style={{ color: 'var(--text-main)' }}>{score["Tổ hợp môn"]}</td>
                                         <td className="tuition-cell hide-mobile">--</td>
-                                        <td className="note-cell" style={{ maxWidth: '200px' }}>
+                                        <td className="note-cell">
                                             <div style={{ fontWeight: 500, color: 'var(--text-main)' }}>{score.schoolName}</div>
                                         </td>
                                         <td className="action-cell hide-mobile">
@@ -188,7 +192,7 @@ const MajorDetail = ({ majorGroup, onBack }) => {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="7" style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-muted)' }}>
+                                    <td colSpan="7" className="no-results-cell">
                                         Không tìm thấy ngành hoặc trường học phù hợp.
                                     </td>
                                 </tr>

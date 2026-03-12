@@ -109,157 +109,163 @@ const HCMUSCalculator = () => {
     return (
         <div className="calculator-container" style={{ animation: 'fadeIn 0.3s ease-out' }}>
             <div className="calculator-header">
-                <h2>CÔNG THỨC VÀ THANG ĐIỂM (KHOA HỌC TỰ NHIÊN TPHCM)</h2>
-                <p>Mô phỏng Phương thức Kết hợp THPT/ĐGNL và Học Bạ (Thang chuẩn hóa tự chọn)</p>
+                <h2>CÔNG THỨC VÀ THANG ĐIỂM (KHTN TPHCM)</h2>
+                <p>Mô phỏng Phương thức Kết hợp THPT/ĐGNL và Học Bạ (PT2)</p>
             </div>
 
             <div className="calculator-body">
                 <div className="calc-card">
-                    <h3>Thông số hệ số (w) dự kiến</h3>
-                    <div className="calc-grid" style={{ marginBottom: '2rem' }}>
-                        <div>
-                            <p style={{ fontWeight: 600, color: 'var(--text-main)', marginBottom: '0.5rem' }}>Trường hợp 1 (THPT + Học bạ)</p>
-                            <div className="input-group" style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
-                                <div style={{ flex: 1 }}>
-                                    <label>Hệ số w1 (THPT)</label>
-                                    <input type="number" step="0.1" max="0.9" min="0.7" value={w1} onChange={e => setW1(e.target.value)} />
+                    <div className="calc-title-modern">Thông số hệ số (w) dự kiến</div>
+                    <div className="grid-2-col" style={{ marginBottom: '2rem' }}>
+                        <div className="highlight-box" style={{ background: '#f0f9ff', borderColor: '#bae6fd' }}>
+                            <p style={{ fontWeight: 700, color: '#0369a1', marginBottom: '0.75rem', fontSize: '0.9rem' }}>TH1: THPT + Học bạ</p>
+                            <div className="grid-2-col">
+                                <div className="modern-input-group">
+                                    <label className="modern-label">w1 (THPT)</label>
+                                    <input className="modern-input" type="number" step="0.1" max="1" min="0" value={w1} onChange={e => setW1(e.target.value)} />
                                 </div>
-                                <div style={{ flex: 1 }}>
-                                    <label>Hệ số w2 (Học bạ)</label>
-                                    <input type="number" step="0.1" max="0.3" min="0.1" value={w2} onChange={e => setW2(e.target.value)} />
+                                <div className="modern-input-group">
+                                    <label className="modern-label">w2 (Học bạ)</label>
+                                    <input className="modern-input" type="number" step="0.1" max="1" min="0" value={w2} onChange={e => setW2(e.target.value)} />
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <p style={{ fontWeight: 600, color: 'var(--text-main)', marginBottom: '0.5rem' }}>Trường hợp 2 (ĐGNL + Học bạ)</p>
-                            <div className="input-group" style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
-                                <div style={{ flex: 1 }}>
-                                    <label>Hệ số w3 (ĐGNL)</label>
-                                    <input type="number" step="0.1" max="0.9" min="0.7" value={w3} onChange={e => setW3(e.target.value)} />
+                        <div className="highlight-box" style={{ background: '#f0fdf4', borderColor: '#bbf7d0' }}>
+                            <p style={{ fontWeight: 700, color: '#166534', marginBottom: '0.75rem', fontSize: '0.9rem' }}>TH2: ĐGNL + Học bạ</p>
+                            <div className="grid-2-col">
+                                <div className="modern-input-group">
+                                    <label className="modern-label">w3 (ĐGNL)</label>
+                                    <input className="modern-input" type="number" step="0.1" max="1" min="0" value={w3} onChange={e => setW3(e.target.value)} />
                                 </div>
-                                <div style={{ flex: 1 }}>
-                                    <label>Hệ số w4 (Học bạ)</label>
-                                    <input type="number" step="0.1" max="0.3" min="0.1" value={w4} onChange={e => setW4(e.target.value)} />
+                                <div className="modern-input-group">
+                                    <label className="modern-label">w4 (Học bạ)</label>
+                                    <input className="modern-input" type="number" step="0.1" max="1" min="0" value={w4} onChange={e => setW4(e.target.value)} />
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <h3>Nhập điểm của thí sinh</h3>
-                    <div className="calc-grid">
+                    <div className="calc-title-modern">Nhập điểm của thí sinh</div>
+                    <div className="grid-2-col">
                         <div className="calc-section">
-                            <div className="input-group">
-                                <label style={{ color: 'var(--primary)' }}>Tổng điểm 3 môn THPT (Tối đa 30)</label>
-                                <input type="number" placeholder="Điểm thi THPT..." value={thptScore} onChange={e => setThptScore(e.target.value)} />
+                            <div className="modern-input-group">
+                                <label className="modern-label" style={{ color: 'var(--primary)' }}>Tổng điểm 3 môn THPT (Max 30)</label>
+                                <input className="modern-input" type="number" placeholder="0" value={thptScore} onChange={e => setThptScore(e.target.value)} />
                             </div>
-                            <div className="input-group">
-                                <label style={{ color: 'var(--primary)' }}>Trung bình tổng 3 năm Học bạ 3 môn (Tối đa 30)</label>
-                                <input type="number" placeholder="Điểm TB Hệ 30..." value={hocBa} onChange={e => setHocBa(e.target.value)} />
-                                <span className="help-text" style={{ marginTop: '0.2rem' }}>Tổng ĐTB 3 năm môn 1 + môn 2 + môn 3</span>
+                            <div className="modern-input-group">
+                                <label className="modern-label" style={{ color: 'var(--primary)' }}>ĐTB Học bạ 3 môn (Max 30)</label>
+                                <input className="modern-input" type="number" placeholder="0" value={hocBa} onChange={e => setHocBa(e.target.value)} />
+                                <span className="help-text">Tổng trung bình 3 năm của 3 môn xét tuyển</span>
                             </div>
-                            <div className="input-group">
-                                <label style={{ color: 'var(--primary)' }}>Điểm thi ĐGNL ĐHQG-HCM</label>
-                                <input type="number" placeholder="VD: 1050" value={dgnlScore} onChange={e => setDgnlScore(e.target.value)} />
+                            <div className="modern-input-group">
+                                <label className="modern-label" style={{ color: 'var(--primary)' }}>Điểm thi ĐGNL ĐHQG-HCM</label>
+                                <input className="modern-input" type="number" placeholder="VD: 1050" value={dgnlScore} onChange={e => setDgnlScore(e.target.value)} />
                             </div>
                         </div>
 
                         <div className="calc-section">
-                            <div className="highlight-box" style={{ marginTop: '0' }}>
-                                <div className="input-group">
-                                    <label>Max Điểm thi ĐGNL (Điểm cao nhất đợt thi)</label>
-                                    <input type="number" value={maxDgnlParam} onChange={e => setMaxDgnlParam(e.target.value)} />
-                                </div>
-                                <div className="input-group">
-                                    <label>Điểm cộng thành tích (tối đa tùy loại)</label>
-                                    <input type="number" value={diemCong} onChange={e => setDiemCong(e.target.value)} />
-                                </div>
-                                <div className="input-group">
-                                    <label>Mức Ưu tiên khu vực/ĐT theo Bộ (Thang 30)</label>
-                                    <select
-                                        value={dtType}
-                                        onChange={e => setDtType(e.target.value)}
-                                        style={{ width: '100%', padding: '0.75rem', border: '1px solid var(--border-light)', borderRadius: '8px', fontSize: '1rem' }}
-                                    >
-                                        <option value="0">Không ưu tiên (0đ)</option>
-                                        <option value="0.25">KV2 (0.25đ)</option>
-                                        <option value="0.5">KV2-NT (0.5đ)</option>
-                                        <option value="0.75">KV1 (0.75đ)</option>
-                                        <option value="1.0">KV3 / NĐT Khác + UT Đối tượng 2 (+1.0đ)</option>
-                                        <option value="1.25">KV2 + UT2 (+1.25đ)</option>
-                                        <option value="1.5">KV2-NT + UT2 (+1.5đ)</option>
-                                        <option value="2.0">UT Đối tượng 1 (+2.0đ)</option>
-                                        <option value="2.75">KV1 + UT1 (+2.75đ)</option>
-                                    </select>
-                                </div>
+                            <div className="modern-input-group">
+                                <label className="modern-label">Max ĐGNL (Điểm cao nhất đợt thi)</label>
+                                <input className="modern-input" type="number" value={maxDgnlParam} onChange={e => setMaxDgnlParam(e.target.value)} />
                             </div>
-
-                            <div className="input-group" style={{ marginTop: '1rem' }}>
-                                <label style={{ color: '#d97706', fontWeight: 600 }}>Thang điểm công bố quy đổi cho KHTN (100 hay 1200?)</label>
+                            <div className="modern-input-group">
+                                <label className="modern-label">Điểm cộng thành tích / Ưu tiên khác</label>
+                                <input className="modern-input" type="number" value={diemCong} onChange={e => setDiemCong(e.target.value)} />
+                            </div>
+                            <div className="modern-input-group">
+                                <label className="modern-label">Ưu tiên Khu vực & Đối tượng (Thang 30)</label>
                                 <select
-                                    value={thangCongBo}
-                                    onChange={e => setThangCongBo(e.target.value)}
-                                    style={{ width: '100%', padding: '0.75rem', border: '1px solid #ffdeaf', backgroundColor: '#fff4e5', borderRadius: '8px', fontSize: '1.2rem', fontWeight: 700 }}
+                                    className="modern-input"
+                                    value={dtType}
+                                    onChange={e => setDtType(e.target.value)}
+                                    style={{ width: '100%', cursor: 'pointer' }}
                                 >
-                                    <option value="100">Thang điểm 100</option>
-                                    <option value="1200">Thang điểm 1200 (hoặc khác)</option>
+                                    <option value="0">Không ưu tiên (0đ)</option>
+                                    <option value="0.25">KV2 (0.25đ)</option>
+                                    <option value="0.5">KV2-NT (0.5đ)</option>
+                                    <option value="0.75">KV1 (0.75đ)</option>
+                                    <option value="1.0">KV3 / Khác + Đối tượng 2 (+1.0đ)</option>
+                                    <option value="1.25">KV2 + UT2 (+1.25đ)</option>
+                                    <option value="1.5">KV2-NT + UT2 (+1.5đ)</option>
+                                    <option value="2.0">Đối tượng 1 (+2.0đ)</option>
+                                    <option value="2.75">KV1 + UT1 (+2.75đ)</option>
                                 </select>
                             </div>
                         </div>
                     </div>
 
-                    <button className="calculate-btn" onClick={handleCalculate} style={{ backgroundColor: '#0d9488' }}>
-                        <Calculator size={20} /> Tính Điểm Xét Tuyển KHTN
+                    <div className="highlight-box" style={{ marginTop: '1.5rem', background: '#fffbeb', borderColor: '#fde68a' }}>
+                        <div className="modern-input-group" style={{ maxWidth: '400px', margin: '0 auto' }}>
+                            <label className="modern-label" style={{ color: '#92400e', textAlign: 'center' }}>Thang điểm công bố quy đổi (KHTN)</label>
+                            <select
+                                className="modern-input"
+                                value={thangCongBo}
+                                onChange={e => setThangCongBo(e.target.value)}
+                            >
+                                <option value="100">Thang điểm 100</option>
+                                <option value="1200">Thang điểm 1200</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button className="calculate-btn calc-btn-khtn" onClick={handleCalculate}>
+                        <Calculator size={20} /> TÍNH ĐIỂM XÉT TUYỂN KHTN
                     </button>
                 </div>
 
                 {result && (
-                    <div className="result-card" style={{ animation: 'slideUp 0.3s ease-out', border: '2px solid #0d9488' }}>
+                    <div className="result-card result-card-khtn">
                         <div className="result-header">
                             <CheckCircle2 color="#0d9488" size={32} />
-                            <h3 style={{ color: '#0d9488' }}>KẾT QUẢ ĐIỂM XÉT TUYỂN KHTN</h3>
+                            <h3>KẾT QUẢ DỰ KIẾN</h3>
                         </div>
 
-                        <div className="result-details" style={{ maxWidth: '600px' }}>
-                            <div className="res-row">
-                                <span style={{ color: 'var(--text-muted)' }}>TH1: Học lực (THPT + Học bạ):</span>
-                                <strong>{result.hl_1.toFixed(3)}</strong>
-                            </div>
-                            <div className="res-row" style={{ marginBottom: '0.2rem' }}>
-                                <span style={{ color: 'var(--text-muted)' }}>Quy đổi ĐGNL sang thang 30:</span>
-                                <strong>{result.pt_dgnl_thang30.toFixed(3)}</strong>
-                            </div>
-                            <div className="res-row">
-                                <span style={{ color: 'var(--text-muted)' }}>TH2: Học lực (ĐGNL + Học bạ):</span>
-                                <strong>{result.hl_2.toFixed(3)}</strong>
-                            </div>
-
-                            <div className="res-divider"></div>
-
-                            <div className="res-row main-comp">
-                                <span>Điểm_học_lực = Max (TH1, TH2):</span>
-                                <strong style={{ color: '#0d9488' }}>{result.hocLuc.toFixed(3)}  ({result.usedMethod})</strong>
-                            </div>
-                            <div className="res-row main-comp">
-                                <span>Điểm Cộng:</span>
-                                <strong>{result.cong.toFixed(3)}</strong>
-                            </div>
-                            <div className="res-row main-comp">
-                                <span>Điểm Ưu Tiên (Thực tế):</span>
-                                <strong>{result.uuTienThucTe.toFixed(3)}</strong>
-                            </div>
-                            <p style={{ fontSize: '0.85rem', color: 'gray', fontStyle: 'italic', textAlign: 'right', marginTop: '-0.2rem' }}>
-                                (Với mức UT gốc: {result.uuTienBase})
-                            </p>
-
-                            <div className="res-divider"></div>
-                            <div className="res-row final-score" style={{ background: '#e6fcf5', color: '#0d9488' }}>
+                        <div className="result-details">
+                            <div className="grid-2-col">
                                 <div>
-                                    <div style={{ fontSize: '1rem', fontWeight: 500 }}>Điểm xét tuyển công bố chuẩn hóa:</div>
-                                    <div style={{ fontSize: '1.8rem', fontWeight: 800, marginTop: '0.25rem' }}>{result.diemCongBo} / {thangCongBo}</div>
+                                    <div className="res-row">
+                                        <span>TH1 (THPT + Học bạ):</span>
+                                        <strong>{result.hl_1.toFixed(2)}</strong>
+                                    </div>
+                                    <div className="res-row">
+                                        <span>TH2 (ĐGNL + Học bạ):</span>
+                                        <strong>{result.hl_2.toFixed(2)}</strong>
+                                    </div>
+                                </div>
+                                <div className="highlight-box highlight-box-khtn">
+                                    <div className="res-row">
+                                        <span style={{ fontSize: '0.9rem' }}>Điểm học lực (Max TH1, TH2):</span>
+                                        <strong>{result.hocLuc.toFixed(2)}</strong>
+                                    </div>
+                                    <div className="res-row" style={{ fontSize: '0.8rem', opacity: 0.8, fontWeight: 600 }}>
+                                        <span>Phương thức sử dụng:</span>
+                                        <span>{result.usedMethod === 'DGNL' ? 'Đánh giá năng lực' : 'Thi TN THPT'}</span>
+                                    </div>
                                 </div>
                             </div>
-                            <p style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-                                * Kết quả trúng tuyển sẽ so quy đổi về thang {thangCongBo} (Lấy 2 chữ số thập phân)
+
+                            <div className="res-divider"></div>
+
+                            <div className="grid-2-col">
+                                <div className="res-row">
+                                    <span>Điểm Cộng:</span>
+                                    <strong>{result.cong.toFixed(2)}</strong>
+                                </div>
+                                <div className="res-row">
+                                    <span>Điểm Ưu Tiên thực tế:</span>
+                                    <strong>{result.uuTienThucTe.toFixed(2)}</strong>
+                                </div>
+                            </div>
+
+                            <div className="res-divider"></div>
+                            <div className="res-row final-score final-score-khtn">
+                                <div className="final-score-content">
+                                    <div className="final-score-label">ĐIỂM XÉT TUYỂN CHUẨN HÓA (Thang {thangCongBo})</div>
+                                    <div className="final-score-value">{result.diemCongBo}</div>
+                                </div>
+                            </div>
+                            <p style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                                * Đây là điểm mô phỏng dựa trên phương thức kết hợp của ĐH KHTN TPHCM. Kết quả thực tế có thể thay đổi tùy theo quy định chính thức.
                             </p>
                         </div>
                     </div>

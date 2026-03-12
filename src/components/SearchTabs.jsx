@@ -15,9 +15,10 @@ const SearchTabs = ({ activeTab, setActiveTab }) => {
                     key={tab.id}
                     className={`tab-btn ${activeTab === tab.id ? 'active' : ''}`}
                     onClick={() => setActiveTab(tab.id)}
+                    data-label-mobile={tab.id === 'truong' ? 'Trường' : tab.id === 'nganh' ? 'Ngành' : 'Điểm'}
                 >
                     {tab.icon}
-                    {tab.label}
+                    <span>{tab.label}</span>
                 </button>
             ))}
         </div>

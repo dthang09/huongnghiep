@@ -51,7 +51,6 @@ const SchoolSearch = ({ onSelectSchool }) => {
                         key={loc}
                         className={`tag-btn ${locationFilter === loc ? 'active' : ''}`}
                         onClick={() => setLocationFilter(locationFilter === loc ? '' : loc)}
-                        style={locationFilter === loc ? { backgroundColor: 'var(--primary)', color: 'white' } : {}}
                     >
                         {loc}
                     </button>
@@ -73,7 +72,7 @@ const SchoolSearch = ({ onSelectSchool }) => {
                         />
                     ))
                 ) : (
-                    <div style={{ textAlign: 'center', padding: '2rem', color: 'var(--text-muted)' }}>
+                    <div className="no-results-cell">
                         Không tìm thấy trường nào phù hợp.
                     </div>
                 )}

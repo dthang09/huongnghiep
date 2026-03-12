@@ -145,7 +145,7 @@ const BKUCalculator = () => {
     };
 
     return (
-        <div className="calculator-container" style={{ animation: 'fadeIn 0.3s ease-out' }}>
+        <div className="calculator-container">
             <div className="calculator-header">
                 <h2>CÔNG THỨC VÀ THANG ĐIỂM XÉT TUYỂN (ĐẠI HỌC BÁCH KHOA TPHCM)</h2>
                 <p>Mô phỏng cơ chế tính điểm tổng hợp theo thang 100 của Bách Khoa.</p>
@@ -155,7 +155,7 @@ const BKUCalculator = () => {
                 <div className="calc-card">
                     {/* Method Selector */}
                     <div className="calc-title-modern">Phương thức xét tuyển</div>
-                    <div className="radio-group" style={{ marginBottom: '2rem', display: 'flex', gap: '2rem' }}>
+                    <div className="radio-group">
                         <label className="radio-label">
                             <input type="radio" checked={hasDGNL} onChange={() => setHasDGNL(true)} />
                             <span>Có kết quả thi ĐGNL</span>
@@ -183,7 +183,7 @@ const BKUCalculator = () => {
                             <p className="help-text" style={{ marginBottom: '2rem' }}>* Hệ thống sẽ tính Điểm Năng Lực = (Tổng_điểm + Toán_học) / 15</p>
                         </>
                     ) : (
-                        <div className="highlight-box" style={{ marginBottom: '2rem', backgroundColor: '#fff4f4', border: '1px solid #ffcccc' }}>
+                        <div className="highlight-box" style={{ marginBottom: '2rem' }}>
                             <p style={{ color: '#c0392b', fontWeight: 600 }}>Thí sinh không thi ĐGNL: Điểm năng lực sẽ được thay thế bằng Điểm thi TN THPT (Chiếm trọng số thay cho ĐGNL + THPT)</p>
                         </div>
                     )}
@@ -278,21 +278,21 @@ const BKUCalculator = () => {
                     </div>
 
                     <div className="calc-title-modern">Điểm cộng / Điểm thành tích</div>
-                    <div className="modern-input-group" style={{ maxWidth: '400px' }}>
+                    <div className="modern-input-group" style={{ maxWidth: '400px', margin: '0 auto' }}>
                         <label className="modern-label">Điểm thành tích</label>
                         <input className="modern-input" type="number" value={achievementScore} onChange={e => setAchievementScore(e.target.value)} placeholder="0" />
                     </div>
 
-                    <button className="calculate-btn" onClick={handleCalculate} style={{ marginTop: '3rem' }}>
+                    <button className="calculate-btn" onClick={handleCalculate}>
                         <Calculator size={20} /> Tính Điểm Xét Tuyển Bách Khoa
                     </button>
                 </div>
 
                 {result && (
-                    <div className="result-card" style={{ animation: 'slideUp 0.3s ease-out' }}>
+                    <div className="result-card">
                         <div className="result-header">
                             <CheckCircle2 color="#2ecc71" size={32} />
-                            <h3>KẾT QUẢ ĐIỂM XÉT TUYỂN (BKU)</h3>
+                            <h3>KẾT QUẢ DỰ KIẾN (BKU)</h3>
                         </div>
 
                         <div className="result-details">
@@ -323,8 +323,10 @@ const BKUCalculator = () => {
                             </div>
                             <div className="res-divider"></div>
                             <div className="res-row final-score">
-                                <span>TỔNG ĐIỂM XÉT TUYỂN:</span>
-                                <span>{result.total.toFixed(2)} / 100</span>
+                                <div className="final-score-content">
+                                    <div className="final-score-label">TỔNG ĐIỂM XÉT TUYỂN</div>
+                                    <div className="final-score-value">{result.total.toFixed(2)} / 100</div>
+                                </div>
                             </div>
                         </div>
                     </div>
