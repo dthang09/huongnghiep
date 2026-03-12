@@ -13,11 +13,59 @@ const SchoolDetail = ({ schoolCode, onBack }) => {
     const scores = schoolScoresData?.scores || [];
 
     const [searchTerm, setSearchTerm] = useState('');
+    const [blockFilter, setBlockFilter] = useState('all');
+    const [sortOrder, setSortOrder] = useState('az');
+
+    // Extract all unique blocks from the combinations for dynamic filtering
+    const availableBlocks = new Set();
+    scores.forEach(score => {
+        const toHop = score["Tổ hợp môn"] || "";
+        const parts = toHop.split(/;\s*|,/);
+        parts.forEach(p => {
+            const letter = p.trim().charAt(0).toUpperCase();
+            if (letter && /[A-Z]/.test(letter)) {
+                availableBlocks.add(letter);
+            }
+        });
+    });
+    const blockList = Array.from(availableBlocks).sort();
 
     const filteredScores = scores.filter(score => {
-        if (!searchTerm) return true;
-        const term = searchTerm.toLowerCase();
-        return (score["Tên ngành"]?.toLowerCase().includes(term) || score["Mã ngành"]?.toLowerCase().includes(term));
+        // Search term filter
+        if (searchTerm) {
+            const term = searchTerm.toLowerCase();
+            const matchesSearch = (score["Tên ngành"]?.toLowerCase().includes(term) || score["Mã ngành"]?.toLowerCase().includes(term));
+            if (!matchesSearch) return false;
+        }
+
+        // Block filter
+        if (blockFilter !== 'all') {
+            const toHop = score["Tổ hợp môn"] || "";
+            // Check if any combination starts with the selected block letter
+            const matchesBlock = toHop.split(/;\s*|,/).some(p => p.trim().toUpperCase().startsWith(blockFilter));
+            if (!matchesBlock) return false;
+        }
+
+        return true;
+    }).sort((a, b) => {
+        const nameA = (a["Tên ngành"] || "").trim().toLowerCase();
+        const nameB = (b["Tên ngành"] || "").trim().toLowerCase();
+
+        const scoreA = parseFloat(a["Điểm chuẩn"]) || 0;
+        const scoreB = parseFloat(b["Điểm chuẩn"]) || 0;
+
+        switch (sortOrder) {
+            case 'az':
+                return nameA.localeCompare(nameB);
+            case 'za':
+                return nameB.localeCompare(nameA);
+            case 'score-desc':
+                return scoreB - scoreA;
+            case 'score-asc':
+                return scoreA - scoreB;
+            default:
+                return 0;
+        }
     });
 
     return (
@@ -90,14 +138,20 @@ const SchoolDetail = ({ schoolCode, onBack }) => {
                 <div className="scores-filters-bar">
                     <div className="filter-dropdown">
                         <Filter size={18} />
-                        <select defaultValue="all">
+                        <select value={blockFilter} onChange={e => setBlockFilter(e.target.value)}>
                             <option value="all">Tất cả các khối</option>
+                            {blockList.map(b => (
+                                <option key={b} value={b}>Khối {b}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="filter-dropdown">
                         <ArrowDownAZ size={18} />
-                        <select defaultValue="az">
+                        <select value={sortOrder} onChange={e => setSortOrder(e.target.value)}>
                             <option value="az">Tên ngành A → Z</option>
+                            <option value="za">Tên ngành Z → A</option>
+                            <option value="score-desc">Điểm chuẩn Cao → Thấp</option>
+                            <option value="score-asc">Điểm chuẩn Thấp → Cao</option>
                         </select>
                     </div>
                     <div className="search-input-wrapper flex-1">
