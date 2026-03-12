@@ -3,7 +3,7 @@ import { Search, ChevronDown, Building2 } from 'lucide-react';
 import { schoolsData, locations } from '../data/mockData';
 import SchoolCard from './SchoolCard';
 
-const SchoolSearch = () => {
+const SchoolSearch = ({ onSelectSchool }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [locationFilter, setLocationFilter] = useState('');
 
@@ -69,6 +69,7 @@ const SchoolSearch = () => {
                             code={school.code}
                             name={school.name}
                             location={school.location}
+                            onSelectSchool={onSelectSchool}
                         />
                     ))
                 ) : (
