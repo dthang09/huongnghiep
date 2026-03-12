@@ -1,7 +1,7 @@
 import React from 'react';
 import { Home } from 'lucide-react';
 
-const Header = () => {
+const Header = ({ currentView, setCurrentView }) => {
     return (
         <header>
             <div className="top-nav">
@@ -24,8 +24,20 @@ const Header = () => {
 
             <nav className="main-nav">
                 <ul className="nav-links">
-                    <li className="nav-link">TÍNH ĐIỂM XÉT TUYỂN</li>
-                    <li className="nav-link active">TRA CỨU ĐIỂM CHUẨN</li>
+                    <li
+                        className={`nav-link ${currentView === 'calculator' ? 'active' : ''}`}
+                        onClick={() => setCurrentView('calculator')}
+                        style={{ cursor: 'pointer' }}
+                    >
+                        TÍNH ĐIỂM XÉT TUYỂN
+                    </li>
+                    <li
+                        className={`nav-link ${currentView === 'search' ? 'active' : ''}`}
+                        onClick={() => setCurrentView('search')}
+                        style={{ cursor: 'pointer' }}
+                    >
+                        TRA CỨU ĐIỂM CHUẨN
+                    </li>
                 </ul>
             </nav>
         </header>

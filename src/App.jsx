@@ -7,19 +7,23 @@ import SchoolDetail from './components/SchoolDetail';
 import MajorSearch from './components/MajorSearch';
 import MajorDetail from './components/MajorDetail';
 import ScoreSearch from './components/ScoreSearch';
+import ScoreCalculator from './components/ScoreCalculator';
 import './index.css';
 
 function App() {
+  const [currentView, setCurrentView] = useState('search'); // 'search' or 'calculator'
   const [activeTab, setActiveTab] = useState('truong');
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [selectedMajorGroup, setSelectedMajorGroup] = useState(null);
 
   return (
     <div className="app">
-      <Header />
+      <Header currentView={currentView} setCurrentView={setCurrentView} />
 
       <main className="container">
-        {selectedSchool ? (
+        {currentView === 'calculator' ? (
+          <ScoreCalculator />
+        ) : selectedSchool ? (
           <div className="search-container detail-view-container">
             <SchoolDetail schoolCode={selectedSchool} onBack={() => setSelectedSchool(null)} />
           </div>
@@ -35,11 +39,6 @@ function App() {
               {activeTab === 'truong' && <SchoolSearch onSelectSchool={setSelectedSchool} />}
               {activeTab === 'nganh' && <MajorSearch onSelectMajorGroup={setSelectedMajorGroup} />}
               {activeTab === 'diem' && <ScoreSearch />}
-              {activeTab === 'hocphi' && (
-                <div className="tab-content" style={{ textAlign: 'center', padding: '4rem' }}>
-                  <h2>Tính năng Tìm theo học phí đang được cập nhật.</h2>
-                </div>
-              )}
             </div>
           </>
         )}

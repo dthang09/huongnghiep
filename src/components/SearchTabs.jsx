@@ -6,7 +6,6 @@ const SearchTabs = ({ activeTab, setActiveTab }) => {
         { id: 'truong', label: 'Tìm trường', icon: <School size={20} /> },
         { id: 'nganh', label: 'Tìm ngành', icon: <Briefcase size={20} /> },
         { id: 'diem', label: 'Tìm theo điểm', icon: <GraduationCap size={20} /> },
-        { id: 'hocphi', label: 'Tìm theo học phí', icon: <DollarSign size={20} /> },
     ];
 
     return (
