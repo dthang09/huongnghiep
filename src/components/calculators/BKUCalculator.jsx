@@ -150,19 +150,40 @@ const BKUCalculator = () => {
 
             <div className="calculator-body">
                 <div className="calc-card">
-                    {/* 1. DGNL Section */}
-                    <div className="calc-title-modern">Điểm thi ĐGNL HCM</div>
-                    <div className="grid-2-col">
-                        <div className="modern-input-group">
-                            <label className="modern-label">Toán học</label>
-                            <input className="modern-input" type="number" value={mathDGNL} onChange={e => setMathDGNL(e.target.value)} placeholder="0" />
-                        </div>
-                        <div className="modern-input-group">
-                            <label className="modern-label">Tổng điểm</label>
-                            <input className="modern-input" type="number" value={totalDGNL} onChange={e => setTotalDGNL(e.target.value)} placeholder="0" />
-                        </div>
+                    {/* Method Selector */}
+                    <div className="calc-title-modern">Phương thức xét tuyển</div>
+                    <div className="radio-group" style={{ marginBottom: '2rem', display: 'flex', gap: '2rem' }}>
+                        <label className="radio-label">
+                            <input type="radio" checked={hasDGNL} onChange={() => setHasDGNL(true)} />
+                            <span>Có kết quả thi ĐGNL</span>
+                        </label>
+                        <label className="radio-label">
+                            <input type="radio" checked={!hasDGNL} onChange={() => setHasDGNL(false)} />
+                            <span>Không thi ĐGNL</span>
+                        </label>
                     </div>
-                    <p className="help-text" style={{ marginBottom: '2rem' }}>* Hệ thống sẽ tính Điểm Năng Lực = (Tổng + Toán) / 15</p>
+
+                    {/* 1. DGNL Section */}
+                    {hasDGNL ? (
+                        <>
+                            <div className="calc-title-modern">Điểm thi ĐGNL HCM</div>
+                            <div className="grid-2-col">
+                                <div className="modern-input-group">
+                                    <label className="modern-label">Toán học (Tối đa 300)</label>
+                                    <input className="modern-input" type="number" value={mathDGNL} onChange={e => setMathDGNL(e.target.value)} placeholder="0" />
+                                </div>
+                                <div className="modern-input-group">
+                                    <label className="modern-label">Tổng điểm (Đã nhân hệ số 2 môn Toán)</label>
+                                    <input className="modern-input" type="number" value={totalDGNL} onChange={e => setTotalDGNL(e.target.value)} placeholder="1000" />
+                                </div>
+                            </div>
+                            <p className="help-text" style={{ marginBottom: '2rem' }}>* Hệ thống sẽ tính Điểm Năng Lực = (Tổng_điểm + Toán_học) / 15</p>
+                        </>
+                    ) : (
+                        <div className="highlight-box" style={{ marginBottom: '2rem', backgroundColor: '#fff4f4', border: '1px solid #ffcccc' }}>
+                            <p style={{ color: '#c0392b', fontWeight: 600 }}>Thí sinh không thi ĐGNL sẽ được quy đổi: Điểm Năng Lực = Điểm TNTHPT quy đổi * 0.75</p>
+                        </div>
+                    )}
 
                     {/* 2. THPT Section */}
                     <div className="calc-title-modern">Điểm thi TN THPT</div>
