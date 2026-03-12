@@ -23,7 +23,7 @@ const ScoreSearch = () => {
             setMaxScore(30);
         } else {
             setMinScore(30);
-            setMaxScore(1200); // 1200 covers thang 100, 40, up to 1200 for ĐGNL
+            setMaxScore(100); // 100 covers thang 100
         }
     };
 
@@ -46,6 +46,7 @@ const ScoreSearch = () => {
             school.scores.forEach(scoreItem => {
                 const rawScore = parseFloat(scoreItem["Điểm chuẩn"]);
                 if (isNaN(rawScore)) return;
+                if (rawScore > 100) return; // Ignore scores > 100
 
                 const method = rawScore <= 30 ? 'thpt' : 'tonghop';
 
@@ -143,7 +144,7 @@ const ScoreSearch = () => {
                         value={minScore}
                         onChange={e => setMinScore(Number(e.target.value))}
                         min={0}
-                        max={scoreMethod === 'thpt' ? 30 : 1200}
+                        max={scoreMethod === 'thpt' ? 30 : 100}
                         step={scoreMethod === 'thpt' ? 0.1 : 1}
                         className="score-number-input"
                     />
@@ -153,7 +154,7 @@ const ScoreSearch = () => {
                         value={maxScore}
                         onChange={e => setMaxScore(Number(e.target.value))}
                         min={0}
-                        max={scoreMethod === 'thpt' ? 30 : 1200}
+                        max={scoreMethod === 'thpt' ? 30 : 100}
                         step={scoreMethod === 'thpt' ? 0.1 : 1}
                         className="score-number-input"
                     />
