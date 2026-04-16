@@ -14,7 +14,7 @@ const MajorDetail = ({ majorGroup, onBack }) => {
         const uniqueBlocks = new Set();
 
         // Convert keywords to lowercase for faster matching
-        const groupKeywords = majorGroup.keywords.map(kw => kw.toLowerCase());
+        const groupKeywords = (majorGroup.keywords || majorGroup.majors.map(m => m.name)).map(kw => kw.toLowerCase());
 
         Object.values(diemchuanData).forEach(school => {
             if (!school.scores) return;
@@ -147,11 +147,6 @@ const MajorDetail = ({ majorGroup, onBack }) => {
                             onChange={e => setSearchTerm(e.target.value)}
                         />
                     </div>
-                </div>
-
-                <div className="scroll-hint-mobile show-mobile">
-                    <span>DÙNG TAY VUỐT SANG PHẢI ĐỂ XEM ĐIỂM</span>
-                    <span style={{ fontSize: '1.2rem' }}>👉</span>
                 </div>
 
                 <div className="table-responsive detail-table-wrapper">

@@ -8,6 +8,9 @@ import MajorSearch from './components/MajorSearch';
 import MajorDetail from './components/MajorDetail';
 import ScoreSearch from './components/ScoreSearch';
 import ScoreCalculator from './components/ScoreCalculator';
+import AdmissionPlan from './components/AdmissionPlan';
+import CareerConsultant from './components/CareerConsultant';
+
 import './index.css';
 
 function App() {
@@ -23,6 +26,10 @@ function App() {
       <main className="container">
         {currentView === 'calculator' ? (
           <ScoreCalculator />
+        ) : currentView === 'dean' ? (
+          <AdmissionPlan />
+        ) : currentView === 'consultant' ? (
+          <CareerConsultant />
         ) : selectedSchool ? (
           <div className="search-container detail-view-container">
             <SchoolDetail schoolCode={selectedSchool} onBack={() => setSelectedSchool(null)} />
@@ -38,7 +45,7 @@ function App() {
               <SearchTabs activeTab={activeTab} setActiveTab={setActiveTab} />
               {activeTab === 'truong' && <SchoolSearch onSelectSchool={setSelectedSchool} />}
               {activeTab === 'nganh' && <MajorSearch onSelectMajorGroup={setSelectedMajorGroup} />}
-              {activeTab === 'diem' && <ScoreSearch />}
+              {activeTab === 'diem' && <ScoreSearch onSelectMajorGroup={setSelectedMajorGroup} />}
             </div>
           </>
         )}

@@ -13,22 +13,21 @@ const SchoolDetail = ({ schoolCode, onBack }) => {
     const scores = schoolScoresData?.scores || [];
 
     const [searchTerm, setSearchTerm] = useState('');
-    const [blockFilter, setBlockFilter] = useState('all');
+    const [comboFilter, setComboFilter] = useState('all');
     const [sortOrder, setSortOrder] = useState('az');
 
-    // Extract all unique blocks from the combinations for dynamic filtering
-    const availableBlocks = new Set();
+    // Extract all unique specific combination codes (e.g. A00, B00, C00, D01...)
+    const availableCombos = new Set();
     scores.forEach(score => {
         const toHop = score["Tổ hợp môn"] || "";
-        const parts = toHop.split(/;\s*|,/);
-        parts.forEach(p => {
-            const letter = p.trim().charAt(0).toUpperCase();
-            if (letter && /[A-Z]/.test(letter)) {
-                availableBlocks.add(letter);
+        toHop.split(/;\s*|,/).forEach(p => {
+            const code = p.trim().toUpperCase();
+            if (/^[A-Z]\d{2}$/.test(code)) {
+                availableCombos.add(code);
             }
         });
     });
-    const blockList = Array.from(availableBlocks).sort();
+    const comboList = Array.from(availableCombos).sort();
 
     const filteredScores = scores.filter(score => {
         // Search term filter
@@ -38,12 +37,11 @@ const SchoolDetail = ({ schoolCode, onBack }) => {
             if (!matchesSearch) return false;
         }
 
-        // Block filter
-        if (blockFilter !== 'all') {
+        // Specific combination code filter (e.g. B00, C00, A01...)
+        if (comboFilter !== 'all') {
             const toHop = score["Tổ hợp môn"] || "";
-            // Check if any combination starts with the selected block letter
-            const matchesBlock = toHop.split(/;\s*|,/).some(p => p.trim().toUpperCase().startsWith(blockFilter));
-            if (!matchesBlock) return false;
+            const matchesCombo = toHop.split(/;\s*|,/).some(p => p.trim().toUpperCase() === comboFilter);
+            if (!matchesCombo) return false;
         }
 
         return true;
@@ -137,10 +135,10 @@ const SchoolDetail = ({ schoolCode, onBack }) => {
                 <div className="scores-filters-bar">
                     <div className="filter-dropdown">
                         <Filter size={18} />
-                        <select value={blockFilter} onChange={e => setBlockFilter(e.target.value)}>
-                            <option value="all">Tất cả các khối</option>
-                            {blockList.map(b => (
-                                <option key={b} value={b}>Khối {b}</option>
+                        <select value={comboFilter} onChange={e => setComboFilter(e.target.value)}>
+                            <option value="all">Tất cả tổ hợp</option>
+                            {comboList.map(c => (
+                                <option key={c} value={c}>Tổ hợp {c}</option>
                             ))}
                         </select>
                     </div>
@@ -162,11 +160,6 @@ const SchoolDetail = ({ schoolCode, onBack }) => {
                             onChange={e => setSearchTerm(e.target.value)}
                         />
                     </div>
-                </div>
-
-                <div className="scroll-hint-mobile show-mobile">
-                    <span>DÙNG TAY VUỐT SANG PHẢI ĐỂ XEM ĐIỂM</span>
-                    <span style={{ fontSize: '1.2rem' }}>👉</span>
                 </div>
 
                 <div className="table-responsive detail-table-wrapper">

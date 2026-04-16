@@ -44,8 +44,8 @@ ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
-  background-color: rgba(255, 255, 255, 0.8);
+  padding: 1rem 1.5rem;
+  background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-light);
@@ -57,54 +57,40 @@ ul {
 .logo-area {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .logo-icon {
   color: var(--primary);
+  display: flex;
+  align-items: center;
 }
 
 .logo-text {
-  font-weight: 700;
+  font-weight: 800;
   color: var(--primary);
   display: flex;
   flex-direction: column;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 .logo-text span:first-child {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.top-pills {
-  display: flex;
-  gap: 1rem;
-}
-
-.pill-button {
-  padding: 0.5rem 1.5rem;
-  border: 1px solid var(--primary);
-  border-radius: 20px;
-  color: var(--primary);
-  font-weight: 600;
-  font-size: 0.9rem;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.pill-button:hover {
-  background-color: var(--primary);
-  color: white;
+.logo-text span:last-child {
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
 }
 
 .main-nav {
   background: linear-gradient(90deg, var(--primary), #3b82f6);
-  padding: 0 2rem;
+  padding: 0;
   position: sticky;
-  top: 60px;
-  /* height of top-nav approx */
+  top: 72px; /* Adjusted for top-nav height */
   z-index: 1000;
   box-shadow: var(--shadow-md);
 }
@@ -113,25 +99,32 @@ ul {
   display: flex;
   justify-content: center;
   gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .nav-link {
   color: white;
-  padding: 1rem 0;
-  font-weight: 600;
-  font-size: 0.9rem;
+  padding: 1rem 0.5rem;
+  font-weight: 700;
+  font-size: 0.85rem;
   text-transform: uppercase;
   cursor: pointer;
   position: relative;
-  opacity: 0.9;
-  transition: opacity 0.2s;
+  opacity: 0.85;
+  transition: all 0.2s;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
   opacity: 1;
 }
 
-.nav-link.active::after {
+.nav-link.active {
+  opacity: 1;
+}
+
+.nav-link::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -139,6 +132,39 @@ ul {
   width: 100%;
   height: 3px;
   background-color: white;
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
+@media (max-width: 768px) {
+  .top-nav {
+    padding: 0.75rem 1rem;
+  }
+
+  .logo-text span:last-child {
+    font-size: 1.1rem;
+  }
+
+  .main-nav {
+    top: 60px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-links {
+    justify-content: flex-start;
+    padding: 0 1rem;
+    gap: 1.5rem;
+  }
+
+  .nav-link {
+    font-size: 0.8rem;
+    padding: 0.85rem 0;
+  }
 }
 
 /* Main Content */
@@ -295,6 +321,10 @@ ul {
   top: 50%;
   transform: translateY(-50%);
   color: var(--primary);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Location Tags */
@@ -601,32 +631,27 @@ ul {
 
   .table-responsive {
     width: 100% !important;
-    overflow-x: scroll !important;
-    /* Force internal scroll */
-    overflow-y: hidden !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    /* Extremely important: allows body scrolling */
     display: block !important;
-    -webkit-overflow-scrolling: touch !important;
-    touch-action: pan-x !important;
-    /* Critically important for mobile scrolling */
-    margin-bottom: 2rem !important;
-    padding-bottom: 15px !important;
+    margin-bottom: 1.5rem !important;
+    padding-bottom: 2px !important;
+    /* Just enough for the bar */
     border-radius: var(--radius-sm);
     position: relative !important;
-    z-index: 50 !important;
     background-color: #fff;
     border: 1px solid var(--border-light);
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
   }
 
   .table-responsive::-webkit-scrollbar {
-    height: 10px !important;
+    height: 6px !important;
     background: #f1f1f1;
-    display: block !important;
   }
 
   .table-responsive::-webkit-scrollbar-thumb {
-    background-color: var(--primary) !important;
-    border-radius: 5px;
+    background-color: #ccc !important;
+    border-radius: 3px;
   }
 
   .table-responsive::-webkit-scrollbar-track {
@@ -639,28 +664,71 @@ ul {
     border-radius: var(--radius-md);
     margin-bottom: 1.5rem;
     position: relative;
-    overflow: initial !important;
   }
 
   /* Table Optimization */
+  /* Force Table Width and Column Behavior */
   table,
   .detail-scores-table {
-    font-size: 0.85rem !important;
+    font-size: 0.82rem !important;
     min-width: 1000px !important;
-    /* Extremely wide to force scroll */
     width: 1000px !important;
-    table-layout: auto !important;
+    table-layout: fixed !important;
+    /* Force columns to respect widths */
     border-collapse: collapse !important;
     display: table !important;
-    max-width: none !important;
     background-color: white;
   }
 
+  /* Specific column widths for 5-6 column score tables */
+  .detail-scores-table th.stt-col,
+  .detail-scores-table td:first-child {
+    width: 45px !important;
+  }
+
+  .detail-scores-table th:nth-child(2),
+  .detail-scores-table td:nth-child(2) {
+    width: 320px !important;
+  }
+
+  /* Name & Code */
+
+  .detail-scores-table th:nth-child(3),
+  .detail-scores-table td:nth-child(3) {
+    width: 95px !important;
+  }
+
+  /* Score */
+
+  .detail-scores-table th:nth-child(4),
+  .detail-scores-table td:nth-child(4) {
+    width: 140px !important;
+  }
+
+  /* Combinations */
+
+  .detail-scores-table th:nth-child(5),
+  .detail-scores-table td:nth-child(5) {
+    width: 350px !important;
+  }
+
+  /* School Name */
+
+  .detail-scores-table th:nth-child(6),
+  .detail-scores-table td:nth-child(6) {
+    width: 50px !important;
+  }
+
+  /* Action column */
+
   th,
   td {
-    padding: 0.75rem 0.5rem !important;
-    white-space: nowrap !important;
-    /* Force content to stay on one line to push width */
+    padding: 0.65rem 0.5rem !important;
+    white-space: normal !important;
+    /* Allow internal wrapping within fixed widths */
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   /* Allow name column to wrap if needed but maintain min-width */
@@ -669,38 +737,6 @@ ul {
     white-space: normal !important;
     min-width: 220px !important;
     word-break: break-word;
-  }
-
-  .scroll-hint-mobile {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem;
-    background-color: #ffeb3b !important;
-    /* Bright yellow */
-    color: #d32f2f !important;
-    /* Bright red text */
-    font-size: 0.85rem;
-    font-weight: 800;
-    margin-bottom: 0.75rem;
-    border-radius: 8px;
-    border: 2px solid #d32f2f;
-    animation: flash 1.5s infinite;
-  }
-
-  @keyframes flash {
-    0% {
-      opacity: 1;
-    }
-
-    50% {
-      opacity: 0.6;
-    }
-
-    100% {
-      opacity: 1;
-    }
   }
 
   .hide-mobile {
@@ -828,7 +864,7 @@ ul {
 
 @media (max-width: 480px) {
   .nav-link {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
   }
 
   .hero h1 {

@@ -25,15 +25,6 @@ const SchoolSearch = ({ onSelectSchool }) => {
             </div>
 
             <div className="filter-bar">
-                <div className="select-wrapper">
-                    <Building2 size={20} className="select-icon" />
-                    <select defaultValue="daihoc">
-                        <option value="daihoc">Hệ đại học</option>
-                        <option value="caodang">Hệ cao đẳng</option>
-                    </select>
-                    <ChevronDown size={20} className="dropdown-icon" />
-                </div>
-
                 <div className="search-input-wrapper">
                     <Search size={20} className="search-icon" />
                     <input
@@ -55,9 +46,6 @@ const SchoolSearch = ({ onSelectSchool }) => {
                         {loc}
                     </button>
                 ))}
-                <button className="tag-btn more">
-                    Tỉnh thành khác <ChevronDown size={16} />
-                </button>
             </div>
 
             <div className="results-list">

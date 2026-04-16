@@ -38,6 +38,20 @@ const Header = ({ currentView, setCurrentView }) => {
                     >
                         TRA CỨU ĐIỂM CHUẨN
                     </li>
+                    <li
+                        className={`nav-link ${currentView === 'dean' ? 'active' : ''}`}
+                        onClick={() => setCurrentView('dean')}
+                        style={{ cursor: 'pointer' }}
+                    >
+                        ĐỀ ÁN TUYỂN SINH
+                    </li>
+                    <li
+                        className={`nav-link ${currentView === 'consultant' ? 'active' : ''}`}
+                        onClick={() => setCurrentView('consultant')}
+                        style={{ cursor: 'pointer' }}
+                    >
+                        TƯ VẤN HƯỚNG NGHIỆP
+                    </li>
                 </ul>
             </nav>
         </header>

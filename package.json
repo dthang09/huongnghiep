@@ -12,6 +12,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "cheerio": "^1.1.0",
     "lucide-react": "^0.577.0",
     "puppeteer": "^24.39.0",

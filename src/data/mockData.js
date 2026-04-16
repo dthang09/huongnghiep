@@ -531,7 +531,7 @@ export const schoolsData = [
   },
   {
     "code": "SPK",
-    "name": "Trường ĐẠI HỌC Sư phạm Kỹ thuật TP.HCM",
+    "name": "Trường Đại học Công nghệ Kỹ thuật TP.HCM",
     "location": "TP HCM"
   },
   {

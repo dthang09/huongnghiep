@@ -37,6 +37,10 @@
     top: 50%;
     transform: translateY(-50%);
     color: var(--primary);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .major-grid {
