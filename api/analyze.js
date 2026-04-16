@@ -19,7 +19,7 @@ export default async function handler(req, res) {
   try {
     const { userData } = req.body;
     const genAI = new GoogleGenerativeAI(API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const prompt = `
 Bạn là một chuyên gia tư vấn hướng nghiệp chuyên sâu tại Việt Nam. 
