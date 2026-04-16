@@ -3,7 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Mỗi khi push lên branch main sẽ tự động deploy
+      - main
+
+# Cấp quyền để GITHUB_TOKEN có thể push lên gh-pages
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -24,8 +28,6 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          # API key được lưu an toàn trong GitHub Repository Secrets
-          # Vào: Settings > Secrets and variables > Actions > New repository secret
           VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
 
       - name: Deploy to GitHub Pages
